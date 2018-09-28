@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>GIT-MEETUP</title>
+<meta name="author" content="(Vaibhav Kaushik)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/night.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">GIT-MEETUP</h1><h2 class="author">Vaibhav Kaushik</h2><p class="date">Created: 2018-09-28 Fri 16:32</p>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orga43e17f">Create a new Repository</h2>
+<p>
+create a new directory, open it and perform a
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git init
+</pre>
+</div>
+<p>
+to create a new git repository. 
+</p>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org9bcaaad">Clone a repository</h2>
+<p>
+create a working copy of a repository by running the command
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git clone https://link/of/repository
+git clone username@host:/path/to/repository
+</pre>
+</div>
+<p>
+when using a remote server, your command will be
+Second command is used when using remote server
+</p>
+</section>
+<section id="slide-sec-">
+<h3 id="org948d930">Fork</h3>
+<p>
+It is always suggested to fork other people repository before
+cloning to work on them
+</p>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orge7922a5">Workflow</h2>
+<p>
+your local repository consists of three "trees" maintained by git. the
+first one is your Working Directory which holds the actual files. the
+second one is the Index which acts as a staging area and finally the
+HEAD which points to the last commit you've made.
+</p>
+</section>
+<section id="slide-sec-" data-background="images/workflow.png" data-background-size="1000px" data-background-transition="Slide">
+<h3 id="orgb698229"></h3>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orga3b3676">Add &amp; Commit</h2>
+<p>
+You can propose changes (add it to the Index) using
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git add &lt;filename&gt;
+git add *
+</pre>
+</div>
+
+<p>
+This is the first step in the basic git workflow. To actually commit these changes use
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git commit -m <span style="color: #f1fa8c;">"Commit message"</span>
+</pre>
+</div>
+
+<p>
+Now the file is committed to the HEAD, but not in your remote repository yet. 
+</p>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgbf515fc">Pushing Changes</h2>
+<p>
+Your changes are now in the HEAD of your local working copy. To send
+those changes to your remote repository, execute
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git push origin master
+</pre>
+</div>
+
+<p>
+Change master to whatever branch you want to push your changes to.
+</p>
+</section>
+<section >
+
+<p>
+If you have not cloned an existing repository and want to connect your
+repository to a remote server, you need to add it with
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git remote add origin &lt;server&gt;
+</pre>
+</div>
+
+<p>
+Now you are able to push your changes to the selected remote server
+</p>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org566cb56">Branching</h2>
+<p>
+Branches are used to develop features isolated from each other. The
+master branch is the "default" branch when you create a
+repository. Use other branches for development and merge them back to
+the master branch upon completion.
+create a new branch named "feature<sub>x</sub>" and switch to it using
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git checkout -b feature_x
+</pre>
+</div>
+
+</section>
+<section >
+<p>
+switch back to master
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git checkout master
+</pre>
+</div>
+
+<p>
+and delete the branch again
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git branch -d feature_x
+</pre>
+</div>
+
+<p>
+a branch is not available to others unless you push the branch to your
+remote repository
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git push origin &lt;branch&gt;
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org8eb420a">Update and Merge</h2>
+<p>
+to update your local repository to the newest commit, execute
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git pull
+</pre>
+</div>
+</section>
+<section id="slide-sec-" data-background="#ff0000">
+<h3 id="orgcda403e">Danger</h3>
+<p>
+in your working directory to fetch and merge remote changes.
+to merge another branch into your active branch (e.g. master), use
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git merge &lt;branch&gt;
+</pre>
+</div>
+
+</section>
+<section id="slide-sec-">
+<h3 id="orgb3f8a40">Diff</h3>
+<p>
+before merging changes, you can also preview them by using
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git diff &lt;source_branch&gt; &lt;target_branch&gt;
+</pre>
+</div>
+</section>
+<section id="slide-sec-">
+<h3 id="org3120729">Tidy Up</h3>
+<p>
+Tidy up by deleting your feature branch. Now that it has been merged
+you don't really need it around.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git branch -d &lt;BRANCHNAME&gt;
+</pre>
+</div>
+
+<p>
+You can also delete the branch from your remote on GitHub:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git push &lt;REMOTENAME&gt; --delete &lt;BRANCHNAME&gt;
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgf023d03">Log</h2>
+<p>
+in its simplest form, you can study repository history using.. git log
+You can add a lot of parameters to make the log look like what you
+want. To see only the commits of a certain author:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git log --author=bob
+</pre>
+</div>
+
+<p>
+To see a very compressed log where each commit is one line:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git log --pretty=oneline
+</pre>
+</div>
+</section>
+<section >
+<p>
+Or maybe you want to see an ASCII art tree of all the branches,
+decorated with the names of tags and branches:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git log --graph --oneline --decorate --all
+</pre>
+</div>
+
+<p>
+See only which files have changed:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git log --name-status
+</pre>
+</div>
+</section>
+<section >
+<p>
+These are just a few of the possible parameters you can use. For more,
+see
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git log --help
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgadf652c">Replace Local Changes</h2>
+<p>
+In case you did something wrong, which for sure never happens ;), you
+can replace local changes using the command
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">git checkout -- &lt;filename&gt;
+</pre>
+</div>
+
+<p>
+this replaces the changes in your working tree with the last content
+in HEAD. Changes already added to the index, as well as new files,
+will be kept.
+</p>
+</section>
+<section >
+<p>
+If you instead want to drop all your local changes and commits, fetch
+the latest history from the server and point your local master branch
+at it like this
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git fetch origin
+git reset --hard origin/master 
+</pre>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

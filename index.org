@@ -1,0 +1,181 @@
+#+AUTHOR:Vaibhav Kaushik
+#+TITLE:GIT-MEETUP
+#+EMAIL:vaibhavkaushik@disroot.org
+#+OPTIONS: toc:nil num:nil
+#+REVEAL_THEME: night
+* Create a new Repository
+create a new directory, open it and perform a
+#+BEGIN_SRC bash
+git init
+#+END_SRC
+to create a new git repository. 
+* Clone a repository
+create a working copy of a repository by running the command
+#+BEGIN_SRC bash
+git clone https://link/of/repository
+git clone username@host:/path/to/repository
+#+END_SRC
+when using a remote server, your command will be
+Second command is used when using remote server
+** Fork
+   It is always suggested to fork other people repository before
+   cloning to work on them
+* Workflow
+your local repository consists of three "trees" maintained by git. the
+first one is your Working Directory which holds the actual files. the
+second one is the Index which acts as a staging area and finally the
+HEAD which points to the last commit you've made.
+** 
+   :PROPERTIES:
+   :reveal_background: images/workflow.png
+   :reveal_background_size: 1000px
+   :reveal_background_trans: Slide
+   :END:
+* Add & Commit
+You can propose changes (add it to the Index) using
+
+#+BEGIN_SRC bash
+git add <filename>
+git add *
+#+END_SRC
+
+This is the first step in the basic git workflow. To actually commit these changes use
+
+#+BEGIN_SRC bash
+git commit -m "Commit message"
+#+END_SRC
+
+Now the file is committed to the HEAD, but not in your remote repository yet. 
+* Pushing Changes
+Your changes are now in the HEAD of your local working copy. To send
+those changes to your remote repository, execute
+
+#+BEGIN_SRC bash
+git push origin master
+#+END_SRC
+
+Change master to whatever branch you want to push your changes to.
+#+REVEAL: split
+
+If you have not cloned an existing repository and want to connect your
+repository to a remote server, you need to add it with
+
+#+BEGIN_SRC bash
+git remote add origin <server>
+#+END_SRC
+
+Now you are able to push your changes to the selected remote server
+* Branching
+Branches are used to develop features isolated from each other. The
+master branch is the "default" branch when you create a
+repository. Use other branches for development and merge them back to
+the master branch upon completion.
+create a new branch named "feature_x" and switch to it using
+
+#+BEGIN_SRC bash
+git checkout -b feature_x
+#+END_SRC
+
+#+REVEAL: split
+switch back to master
+#+BEGIN_SRC bash
+git checkout master
+#+END_SRC
+
+and delete the branch again
+
+#+BEGIN_SRC bash
+git branch -d feature_x
+#+END_SRC
+
+a branch is not available to others unless you push the branch to your
+remote repository
+
+#+BEGIN_SRC bash
+git push origin <branch>
+#+END_SRC
+
+* Update and Merge
+to update your local repository to the newest commit, execute
+#+BEGIN_SRC bash
+git pull
+#+END_SRC
+** Danger
+   :PROPERTIES:
+   :reveal_background: #ff0000
+   :END:
+
+ in your working directory to fetch and merge remote changes.
+ to merge another branch into your active branch (e.g. master), use
+ #+BEGIN_SRC bash
+ git merge <branch>
+ #+END_SRC
+
+** Diff
+ before merging changes, you can also preview them by using
+ #+BEGIN_SRC bash
+ git diff <source_branch> <target_branch>
+ #+END_SRC
+** Tidy Up
+Tidy up by deleting your feature branch. Now that it has been merged
+you don't really need it around.
+
+#+BEGIN_SRC bash
+git branch -d <BRANCHNAME>
+#+END_SRC
+
+You can also delete the branch from your remote on GitHub:
+
+#+BEGIN_SRC bash
+git push <REMOTENAME> --delete <BRANCHNAME>
+#+END_SRC
+* Log
+in its simplest form, you can study repository history using.. git log
+You can add a lot of parameters to make the log look like what you
+want. To see only the commits of a certain author:
+
+#+BEGIN_SRC bash
+git log --author=bob
+#+END_SRC
+
+To see a very compressed log where each commit is one line:
+#+BEGIN_SRC bash
+git log --pretty=oneline
+#+END_SRC
+#+REVEAL: split
+Or maybe you want to see an ASCII art tree of all the branches,
+decorated with the names of tags and branches:
+#+BEGIN_SRC bash
+git log --graph --oneline --decorate --all
+#+END_SRC
+
+See only which files have changed:
+#+BEGIN_SRC bash
+git log --name-status
+#+END_SRC
+#+REVEAL: split
+These are just a few of the possible parameters you can use. For more,
+see
+#+BEGIN_SRC bash
+git log --help
+#+END_SRC
+
+* Replace Local Changes
+ In case you did something wrong, which for sure never happens ;), you
+ can replace local changes using the command
+
+#+BEGIN_SRC bash
+git checkout -- <filename>
+#+END_SRC
+
+this replaces the changes in your working tree with the last content
+in HEAD. Changes already added to the index, as well as new files,
+will be kept.
+#+REVEAL: split
+If you instead want to drop all your local changes and commits, fetch
+the latest history from the server and point your local master branch
+at it like this
+#+BEGIN_SRC bash
+git fetch origin
+git reset --hard origin/master 
+#+END_SRC
