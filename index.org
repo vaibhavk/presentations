@@ -1,5 +1,5 @@
 #+AUTHOR:Vaibhav Kaushik
-#+TITLE:Vim
+#+TITLE:Intro To Vim
 #+EMAIL:vaibhavkaushik@disroot.org
 #+OPTIONS: toc:nil num:nil
 #+REVEAL_THEME: night
@@ -12,6 +12,10 @@
 ** I don't need to remember
 ** It's light weight and everywhere I go
 ** It's light on my fingers too
+* About this Talk
+  * A little Walkthough of Vim
+  * About Vim Modes
+  * Some really really powerfull options in Vim 
 * A little Walkthrough of Vim
 ** Starting Vim
   vim <file-name>
@@ -24,14 +28,25 @@
 ** Exiting Vim
   * In normal Mode
     - :q
-  * In Insert Mode  
+  * Or
     - Ctrl+z //To send vim in background
     - $ fg //To get back in vim
-** Thank you!
+** Movements
+   * h,j,k,l - left,down,up,right (You need this)
+   * w - word forward
+   * e - Forward to end of word
+   * b - Word backword
+   * {,} - paragraph backward and forward
+   * % - goto matching parenthesis
 * Modes
   * Normal Mode
   * Insert Mode
   * Command Mode
   * Visual Mode
-
-
+** Insert Mode -> Normal Mode
+   * Esc - Normal Mode
+   * Ctrl-[ - Same as above
+* File Finders
+* Code Walkthrough
+* Auto Completion
+* NeoVim
